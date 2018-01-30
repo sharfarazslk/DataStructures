@@ -5,23 +5,24 @@
 //Implementation of stack for type integer only 
 
 #include <iostream>
-#include "pointerstack.h"
+#include "Stack_Pointer.h"
 using namespace std;
 
 //Implementation
-
 Node1::Node1()
 {
 	link_ = NULL;
 	data_ = 0;
 }
 
-int Node1::getData() //Returns Data from Node
+//Returns Data from Node
+int Node1::getData() 
 {
 	return data_;
 }
 
-Node1* Node1::get_next() //Returns pointer to next Node
+//Returns pointer to next Node
+Node1* Node1::get_next() 
 {
 	return link_;
 }
@@ -36,54 +37,79 @@ void Node1::setLink(Node1 *l)
 	link_ = l;
 }
 
-Point_Stack::Point_Stack()  //Default constructor
+
+//Stack Implementation
+Stack::Stack()
 {
 	next = new Node1();
 	next->setLink(NULL);
 }
 
-Point_Stack::Point_Stack(int x) //Alternate Constructor
+Stack::Stack(int x)
 {
 	next = new Node1();
 	next->setData(x);
 	next->setLink(NULL);
 }
 
-int Point_Stack::Top() //Returns value from top index
+//Returns value from top
+int Stack::Top() 
 {
-	return next->getData();
+	if (Empty() == false)
+	{
+		return next->getData();	
+	}
+	else
+	{
+		cout << "Stack is empty";
+		return -1;
+	}
+	
 }
 
-void Point_Stack::Pop() //Removes last index
+//Removes from top
+int Stack::Pop() 
 {
-	Node1 *tmp = next;
-	next = tmp->get_next();
+	f (Empty() == false)
+	{
+		int temp = next->getData();
+		Node1 *tmp = next;
+		next = tmp->get_next();
+		return temp;	
+	}
+	else
+	{
+		cout << "Stack is empty";
+		return -1;
+	}
+
 }
 
-void Point_Stack::Push(int x) //Adds element to stack
+//Adds element to stack
+void Stack::Push(int x) 
 {
 	Node1 *tmp = next; //Copies pointer to last element
 	Node1 *newNode = new Node1(); //Creates new node
-	newNode->setData(x); //Sets information for node
+	newNode->setData(x); 
 	newNode->setLink(tmp); //New node points to previous last element
 	next = newNode; //Newnode is last element in stack
 }
 
-bool Point_Stack::Empty() //Checks to see if empty
+//Checks to see if empty
+bool Stack::Empty() 
 {
 	if (next->getData() == NULL)
 	{
-		//cout << "Stack is Empty" << endl;
 		return true;
 	}
 	else
 	{
-		//cout << "Stack is not empty" << endl;
 		return false;
 	}
 }
 
-Node1* Point_Stack::Makenull() //Creates empty stack
+//Creates empty stack
+Node1* Stack::Makenull() 
 {
 	Node1 *newNode = new Node1();
 	newNode->setLink(NULL);

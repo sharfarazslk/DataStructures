@@ -1,7 +1,5 @@
 //Sharfaraz Salek
-//CS-260
-//Assignment-1
-//Implementation of a stack using pointers
+//Pointer Implementation of a stack
 //Implementation of stack for type integer only
 
 #include <iostream>
@@ -27,21 +25,21 @@ class Node1
 		Node1 *link_;
 };
 
-class Point_Stack
+class Stack
 {
 	public:
 		//Constructor
-		Point_Stack();
-		Point_Stack(int x);
+		Stack();
+		Stack(int x);
 
 		//Inspector
-		int Top();
+		int Top(); //Returns value from top
 
 		//Mutator;
-		void Pop();
-		void Push(int x);
-		bool Empty();
-		Node1* Makenull();
+		int Pop(); //Removes from top
+		void Push(int x); //Adds element to stack
+		bool Empty(); //Checks to see if empty
+		Node1* Makenull(); //Creates empty stack
 
 	private:
 		Node1 *next; //Stores pointer for last element
